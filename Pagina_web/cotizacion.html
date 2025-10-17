@@ -1,67 +1,41 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Crea tu Cuento</title>
+    <link rel="stylesheet" href="estilo_general.css">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
             padding: 2em;
-            color: #333;
         }
-        .form-container {
+        h1, h2 {
+            color: #8A2BE2;
+            text-align: left;
+            margin-bottom: 1em;
+            border-bottom: 1px solid #444;
+            padding-bottom: 0.5em;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        b {
+            color: #e0e0e0;
+        }
+        iframe[src*="googleusercontent.com/maps"] {
+            width: 100%;
             max-width: 600px;
-            margin: auto;
-            padding: 2em;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .form-group {
-            margin-bottom: 1.5em;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5em;
-            font-weight: 600;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 0.8em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-        button {
-            width: 100%;
-            padding: 1em;
-            border: none;
-            background-color: #3498db;
-            color: white;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
+            height: 400px;
+            border: 2px solid #8A2BE2;
+            border-radius: 8px;
+            margin-top: 1.5em;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h1>Crea tu Propia Aventura</h1>
-        <form action="cuento.html" method="GET">
+        <form action="cuento.html" method="GET" target="contenido">
             <div class="form-group">
                 <label for="nombre">Nombres y Apellidos:</label>
                 <input type="text" id="nombre" name="nombre" required>

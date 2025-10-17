@@ -1,69 +1,70 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Tu Cuento</title>
+    <link rel="stylesheet" href="estilo_general.css">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
             padding: 2em;
-            color: #333;
         }
-        .story-container {
-            max-width: 700px;
-            margin: auto;
-            padding: 2em;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            line-height: 1.6;
+        h1, h2 {
+            color: #8A2BE2;
+            text-align: left;
+            margin-bottom: 1em;
+            border-bottom: 1px solid #444;
+            padding-bottom: 0.5em;
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
+        p {
+            margin-bottom: 1em;
         }
-        .highlight {
-            font-weight: bold;
-            color: #3498db;
+        b {
+            color: #e0e0e0;
+        }
+        iframe[src*="googleusercontent.com/maps"] {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            border: 2px solid #8A2BE2;
+            border-radius: 8px;
+            margin-top: 1.5em;
         }
     </style>
 </head>
 <body>
     <div class="story-container">
         <h1 id="story-title">La Aventura de...</h1>
-        <p id="story-content">Cargando historia...</p>
+        <p id="story-content" style="line-height: 1.8; font-size: 1.1em;">Cargando historia...</p>
     </div>
 
     <script>
-        // Este script se ejecuta cuando la página se carga
         window.onload = function() {
-            // Obtenemos los datos enviados en la URL
             const params = new URLSearchParams(window.location.search);
+            const nombre = params.get('nombre') || 'un valiente aventurero';
+            const apodo = params.get('apodo') || 'El Misterioso';
+            const cabello = params.get('cabello') || 'oscuro como la noche';
+            const ojos = params.get('ojos') || 'brillantes como las estrellas';
+            const edad = params.get('edad') || 'una edad sin tiempo';
+            const hobby = params.get('hobby') || 'buscar nuevas aventuras';
 
-            const nombre = params.get('nombre');
-            const apodo = params.get('apodo');
-            const cabello = params.get('cabello');
-            const ojos = params.get('ojos');
-            const edad = params.get('edad');
-            const hobby = params.get('hobby');
-
-            // Actualizamos los elementos en la página con los datos
             document.getElementById('story-title').innerText = `La Leyenda de ${apodo}`;
             
-            // Construimos el cuento usando los datos
+            // Definimos una clase para resaltar en el CSS general, pero podemos añadir un color específico aquí si queremos.
+            const highlightStyle = "font-weight: bold; color: #8A2BE2;";
+
             const storyText = `
-                En un mundo no muy distinto al nuestro, vivía alguien muy especial llamado <span class="highlight">${nombre}</span>, 
-                aunque sus amigos lo conocían por el apodo de <span class="highlight">${apodo}</span>. 
-                Con tan solo <span class="highlight">${edad}</span> años, ya era una persona notable por sus brillantes ojos color 
-                <span class="highlight">${ojos}</span> y su cabello de un intenso tono <span class="highlight">${cabello}</span>.
+                En un mundo no muy distinto al nuestro, vivía alguien muy especial llamado <span style="${highlightStyle}">${nombre}</span>, 
+                aunque sus amigos lo conocían por el apodo de <span style="${highlightStyle}">${apodo}</span>. 
+                Con tan solo <span style="${highlightStyle}">${edad}</span> años, ya era una persona notable por sus brillantes ojos color 
+                <span style="${highlightStyle}">${ojos}</span> y su cabello de un intenso tono <span style="${highlightStyle}">${cabello}</span>.
                 <br><br>
                 Pero lo que realmente hacía única a esta persona era su increíble pasión por 
-                <span class="highlight">${hobby}</span>. Cada momento libre era una oportunidad para dedicarse a ello, convirtiendo 
-                días ordinarios en extraordinarias aventuras. Y así, la leyenda de <span class="highlight">${apodo}</span> y su 
-                amor por el <span class="highlight">${hobby}</span> crecía día con día, inspirando a todos a su alrededor.
+                <span style="${highlightStyle}">${hobby}</span>. Cada momento libre era una oportunidad para dedicarse a ello, convirtiendo 
+                días ordinarios en extraordinarias aventuras. Y así, la leyenda de <span style="${highlightStyle}">${apodo}</span> y su 
+                amor por el <span style="${highlightStyle}">${hobby}</span> crecía día con día, inspirando a todos a su alrededor.
             `;
 
-            // Mostramos el cuento en el párrafo correspondiente
             document.getElementById('story-content').innerHTML = storyText;
         };
     </script>
