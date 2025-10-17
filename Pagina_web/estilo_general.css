@@ -1,136 +1,196 @@
+/*
+ * ARCHIVO DE ESTILOS PRINCIPAL
+ * Tema: ElectroFest - Dark Neon
+ * Descripción: Este archivo define la apariencia visual para el sitio web del festival.
+ * Incluye un tema oscuro, un diseño de dos columnas (menú y contenido),
+ * y estilos neón para los elementos interactivos.
+ * Autor: [Tu Nombre/Proyecto]
+ * Versión: 1.0
+ */
+
 /* --- 1. IMPORTAR UNA FUENTE MODERNA DESDE GOOGLE FONTS --- */
+/*
+ * Se importa la fuente 'Poppins' en sus pesos 400 (regular) y 700 (negrita).
+ * Esta fuente se usará como tipografía base para todo el sitio, dándole un
+ * aspecto limpio y moderno.
+ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+
 /* --- 2. TEMA OSCURO Y ESTILOS GENERALES --- */
+/*
+ * Se aplican estilos base a la etiqueta <body>, que engloba toda la página.
+ */
 body {
-    /* Usamos la fuente que importamos */
+    /* Establece la fuente principal del sitio. Si Poppins no carga, usa una sans-serif genérica. */
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    /* Fondo oscuro para el ambiente de festival */
-    background-color: #121212;
-    color: #e0e0e0; /* Color de texto principal (gris claro) */
+    margin: 0; /* Elimina el margen por defecto del navegador para que no haya espacios en blanco. */
+    background-color: #121212; /* Fondo principal oscuro para crear el ambiente del festival. */
+    color: #e0e0e0; /* Color de texto principal (gris claro) para asegurar buena legibilidad sobre el fondo oscuro. */
 }
+
 
 /* --- 3. ESTILOS DEL ENCABEZADO (BANNER) --- */
+/*
+ * Define el estilo del banner principal que se muestra en la parte superior del sitio.
+ */
 .site-header {
-    text-align: center;
-    padding: 3em 0; /* Más espacio arriba y abajo */
+    text-align: center; /* Centra horizontalmente todo el contenido del header (logo, título). */
+    padding: 3em 0; /* Añade un espacio interno vertical (3em arriba/abajo) para darle altura. */
+    
+    /* * Propiedad de fondo compleja:
+     * 1. linear-gradient(...): Crea una capa de color negro semitransparente sobre la imagen para oscurecerla.
+     * Esto mejora la legibilidad del texto que se ponga encima.
+     * 2. url('...'): Carga la imagen de fondo desde una URL.
+     * 3. no-repeat center center/cover: Configura la imagen para que no se repita, esté centrada
+     * y se escale para cubrir todo el espacio del header sin deformarse.
+     */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-    /* La imagen de fondo de festival se cargará desde esta URL. Puedes cambiarla si tienes otra. */
-    border-bottom: 3px solid #8A2BE2;
-    position: relative; /* Necesario para que el contenido dentro se posicione bien */
+    
+    border-bottom: 3px solid #8A2BE2; /* Línea inferior de color violeta neón que separa el header del resto del contenido. */
+    position: relative; /* Necesario para posicionar correctamente los elementos hijos con 'position: absolute' o 'z-index'. */
 }
 
+/*
+ * Contenedor para el contenido del header, asegura que se superponga correctamente a la imagen.
+ */
 .site-header .header-content {
-    position: relative; /* Posiciona el logo y el texto sobre la imagen de fondo */
-    z-index: 10; /* Asegura que esté por encima de la imagen de fondo */
+    position: relative; /* Asegura que este contenedor se posicione respecto al .site-header. */
+    z-index: 10; /* Coloca este contenedor en una capa superior a la imagen de fondo. */
 }
 
+/* Estilos para la imagen (logo) dentro del header. */
 .site-header img {
-    max-width: 450px;
-    width: 90%; /* Ajuste para responsividad */
-    height: auto;
-    margin-bottom: 15px; /* Espacio entre el logo y el título */
+    max-width: 450px; /* Ancho máximo para el logo. */
+    width: 90%; /* En pantallas pequeñas, el logo ocupará el 90% del ancho para ser responsivo. */
+    height: auto; /* La altura se ajusta automáticamente para mantener la proporción. */
+    margin-bottom: 15px; /* Espacio entre el logo y el título h1. */
 }
 
+/* Estilos para el título principal del header. */
 .site-header h1 {
-    color: #ffffff;
-    font-size: 2.8em; /* Título más grande */
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para que se lea mejor */
+    color: #ffffff; /* Color de texto blanco para máximo contraste. */
+    font-size: 2.8em; /* Tamaño de fuente grande para el título. */
+    margin: 0; /* Elimina el margen por defecto del h1. */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra de texto para que resalte sobre el fondo. */
 }
+
+
 /* --- 4. CONTENEDOR PRINCIPAL --- */
+/*
+ * Este contenedor organiza los dos bloques principales de la página: el menú y el contenido.
+ */
 .main-container {
-    display: flex;
-    height: calc(100vh - 140px); /* Ocupa el alto de la pantalla menos el header */
+    display: flex; /* Activa el modelo de caja flexible (Flexbox), que permite alinear elementos fácilmente. */
+    
+    /*
+     * Calcula la altura del contenedor para que ocupe el 100% de la altura de la ventana (100vh)
+     * menos la altura aproximada del header (140px). Esto evita el scroll general de la página.
+     */
+    height: calc(100vh - 140px);
 }
+
 
 /* --- 5. ESTILOS DEL MENÚ LATERAL --- */
+/*
+ * Define la columna izquierda que funcionará como menú de navegación.
+ */
 .site-menu {
-    width: 20%;
-    min-width: 200px; /* Ancho mínimo para que no se aplaste */
-    background-color: #1a1a1a;
-    border-right: 1px solid #333;
+    width: 20%; /* Ocupa el 20% del ancho del .main-container. */
+    min-width: 200px; /* Ancho mínimo para evitar que se comprima demasiado en pantallas pequeñas. */
+    background-color: #1a1a1a; /* Un fondo oscuro, ligeramente diferente al del body. */
+    border-right: 1px solid #333; /* Línea divisoria sutil entre el menú y el contenido. */
 }
+
 
 /* --- 6. ÁREA DE CONTENIDO PRINCIPAL --- */
+/*
+ * Define la columna derecha, donde se mostrará el contenido principal de cada página.
+ */
 .site-content {
-    width: 80%;
-    padding: 2em;
-    /* Hacemos que el scroll sea interno si el contenido es muy largo */
-    overflow-y: auto;
+    width: 80%; /* Ocupa el 80% del ancho del .main-container. */
+    padding: 2em; /* Espacio interno para que el contenido no esté pegado a los bordes. */
+    overflow-y: auto; /* Si el contenido es más alto que el contenedor, se activará un scroll vertical SÓLO en esta área. */
 }
+
 
 /* --- 7. ESTILOS PARA EL CONTENIDO (APLICAN A TODAS LAS PÁGINAS) --- */
-/* Estilos para el menú (se aplicarán dentro del iframe) */
+
+/* Estilos para el cuerpo del documento que se carga dentro del iframe del menú. */
 body.menu-body {
-    background-color: #1a1a1a;
-    padding-top: 20px;
+    background-color: #1a1a1a; /* Mismo color de fondo que el contenedor del menú. */
+    padding-top: 20px; /* Espacio superior para los enlaces. */
 }
 
+/* Estilos para los enlaces de navegación dentro del menú. */
 .menu-table a {
-    display: block; /* Hacemos que el enlace ocupe todo el espacio */
-    padding: 15px;
-    text-decoration: none;
-    color: #e0e0e0;
-    font-weight: bold;
-    border-bottom: 1px solid #333;
-    transition: background-color 0.3s, color 0.3s;
+    display: block; /* El enlace ocupa todo el ancho disponible, haciéndolo más fácil de clickear. */
+    padding: 15px; /* Espacio interno para que el texto no esté pegado a los bordes. */
+    text-decoration: none; /* Quita el subrayado por defecto de los enlaces. */
+    color: #e0e0e0; /* Color del texto del enlace. */
+    font-weight: bold; /* Texto en negrita. */
+    border-bottom: 1px solid #333; /* Línea divisoria entre cada enlace. */
+    transition: background-color 0.3s, color 0.3s; /* Animación suave para el cambio de color. */
 }
 
+/* Efecto al pasar el mouse sobre un enlace del menú. */
 .menu-table a:hover {
-    background-color: #8A2BE2; /* Color neón al pasar el mouse */
-    color: #ffffff;
+    background-color: #8A2BE2; /* Cambia el fondo al color neón. */
+    color: #ffffff; /* Cambia el texto a blanco para un mejor contraste. */
 }
 
 
-/* Estilos para los formularios (como el de 'Crea tu Cuento') */
+/* Estilos genéricos para contenedores de formularios. */
 .form-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 2em;
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); /* Sombra de color neón */
+    max-width: 600px; /* Ancho máximo del formulario. */
+    margin: auto; /* Centra el formulario horizontalmente. */
+    padding: 2em; /* Espacio interno. */
+    background-color: #1e1e1e; /* Fondo oscuro para el formulario. */
+    border-radius: 10px; /* Bordes redondeados. */
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); /* Sombra de color neón para un efecto de brillo. */
 }
 
+/* Estilos para los campos de entrada de texto y número. */
 input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1em;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background-color: #2c2c2c;
-    color: #e0e0e0;
-    box-sizing: border-box;
+    width: 100%; /* Ocupan todo el ancho del formulario. */
+    padding: 12px; /* Espacio interno para que el texto no esté pegado al borde. */
+    margin-bottom: 1em; /* Margen inferior para separar los campos. */
+    border: 1px solid #444; /* Borde sutil. */
+    border-radius: 5px; /* Bordes redondeados. */
+    background-color: #2c2c2c; /* Color de fondo oscuro para el campo. */
+    color: #e0e0e0; /* Color del texto que se escribe. */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total del elemento. */
 }
 
+/* Efecto al hacer clic o seleccionar un campo de entrada. */
 input[type="text"]:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: #8A2BE2;
-    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+    outline: none; /* Elimina el borde por defecto del navegador al seleccionar. */
+    border-color: #8A2BE2; /* El borde cambia a color neón. */
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Se añade una sombra de brillo neón. */
 }
 
+/* Estilos para los botones. */
 button {
-    width: 100%;
-    padding: 1em;
-    border: none;
-    background-color: #8A2BE2; /* Color neón */
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    width: 100%; /* Ocupa todo el ancho. */
+    padding: 1em; /* Espacio interno. */
+    border: none; /* Sin borde. */
+    background-color: #8A2BE2; /* Fondo de color neón. */
+    color: white; /* Texto blanco. */
+    font-size: 1em; /* Tamaño de fuente. */
+    font-weight: bold; /* Texto en negrita. */
+    border-radius: 5px; /* Bordes redondeados. */
+    cursor: pointer; /* El cursor cambia a una mano para indicar que es clickeable. */
+    transition: background-color 0.3s, transform 0.2s; /* Animación suave para los efectos. */
 }
 
+/* Efecto al pasar el mouse sobre el botón. */
 button:hover {
-    background-color: #9932CC; /* Un tono más oscuro del neón */
-    transform: scale(1.02); /* Efecto de crecimiento leve */
+    background-color: #9932CC; /* El color de fondo se oscurece ligeramente. */
+    transform: scale(1.02); /* El botón se agranda un 2% para un efecto de "pulsación". */
 }
 
-/* Títulos y textos generales */
+/* Estilos generales para títulos dentro del área de contenido. */
 h1, h2 {
-    color: #ffffff;
-    text-align: center;
+    color: #ffffff; /* Color blanco para los títulos. */
+    text-align: center; /* Títulos centrados. */
 }
